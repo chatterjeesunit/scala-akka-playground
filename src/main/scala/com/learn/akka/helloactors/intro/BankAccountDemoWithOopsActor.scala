@@ -1,7 +1,22 @@
 package com.learn.akka.helloactors.intro.oops
 
-import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext, Behaviors}
+import akka.actor.typed.{ActorSystem, Behavior}
+import com.learn.akka.helloactors.intro.oops.BankAccountActor.{Deposit, ShowBalance, Transaction, Withdraw}
+
+object BankAccountDemoWithOopsActor extends App {
+
+  val actorSystem: ActorSystem[Transaction] = ActorSystem(BankAccountActor(), "bank_account_system")
+
+  actorSystem ! Deposit(1000)
+  actorSystem ! Withdraw(2000)
+  actorSystem ! Withdraw(750)
+  actorSystem ! ShowBalance()
+
+  actorSystem.terminate()
+
+}
+
 
 object BankAccountActor {
 
@@ -11,7 +26,7 @@ object BankAccountActor {
   final case class Deposit(amount: Int) extends Transaction
   final case class Withdraw(amount: Int) extends Transaction
   final case class ShowBalance() extends Transaction
-  
+
   def apply(): Behavior[Transaction] =
     Behaviors.setup(context => new BankAccountBehavior(context))
 
