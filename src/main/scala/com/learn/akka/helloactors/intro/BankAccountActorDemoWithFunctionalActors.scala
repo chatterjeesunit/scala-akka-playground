@@ -4,6 +4,13 @@ import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorSystem, Behavior}
 import com.learn.akka.helloactors.intro.func.BankAccountActor.{Deposit, ShowBalance, Transaction, Withdraw}
 
+/**
+ * Single Actor Creation / Message Sending / Actor State Demo
+ * Create a Bank Account Actor and send messages to it to withdraw money from the account
+ * Demonstrate how actor maintains its state
+ *
+ * In this code, we have used Functional style to create an actor an maintain its state
+ */
 object BankAccountActorDemoWithFunctionalActors extends App {
 
   val actorSystem: ActorSystem[Transaction] = ActorSystem(BankAccountActor(10000), "bank_account_system")

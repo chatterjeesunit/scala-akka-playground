@@ -8,6 +8,13 @@ import com.learn.akka.helloactors.intro.PongActor.Pong
 
 import java.time.LocalDateTime
 
+/**
+ * Child Actors Creation Demo
+ *
+ * Create child actors, and let them send messages to each other one after other
+ *
+ * This code uses a mix of Object Oriented and Functional style, to create the actors
+ */
 object PingPongDemo extends App {
 
   val actorSystem = ActorSystem(PingPong(), "PingPongGame")
@@ -19,6 +26,7 @@ object PingPongDemo extends App {
 
   actorSystem.terminate()
 }
+
 
 object PingPong {
 
